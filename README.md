@@ -18,7 +18,7 @@ Develop a lexer that can yield a stream of tokens.
 - [ ] Lexer
   - [x] Find a way to quickly scan text for patterns
 
-Pattern scanning was extracted to a separate library, [Scout](https://github.com).
+Pattern scanning was extracted to a separate library, [Scout](https://github.com/jmkng/scout).
 
 ## Phase 2
 
