@@ -2,7 +2,12 @@
     .name = "ash",
     .version = "0.1.0",
     .minimum_zig_version = "0.12.0",
-    .dependencies = .{},
+    .dependencies = .{
+        .scout = .{
+            .url = "git+https://github.com/jmkng/scout#b48a7bf32b870cc96fdab1d5939feea649fa3d94",
+            .hash = "1220e0186b1d91eff978766f01f5cde15bf76529e2f9318f1a29ebbc71e32eb8584f",
+        },
+    },
     .paths = .{
         "build.zig",
         "build.zig.zon",

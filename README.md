@@ -1,28 +1,48 @@
 # Roadmap
 
-This is going to be a general purpose text templating engine, something like Jinja in Python or Tera in Rust. I want this library to return helpful error messages and be reasonably fast, so I'll be building the parser by hand, rather than using some kind of library similar to Pest, like Tera does.
+This is going to be a general purpose text templating engine, something like Jinja in Python or Tera in Rust.
+
+The parser will be written by hand so it should be nice and fast, and provide some really helpful error messages when you mess the syntax up.
+
+I'd like the syntax to be Zig-like so your muscle memory isn't punished for writing a for loop like this:
+
+```
+for (items) |item| ...
+```
+
+But at the same time, it's fine to just drop the extra symbols, since this is just a dynamic template language and doesn't need to be so strict:
+
+```
+for items item ...
+// Or..
+for items item, index ...
+```
+
+That being said, I don't really care to compile down to Zig functions or anything like that.
 
 ## Features
 
-- [ ] Basic in-template logic (if/for)
+- [ ] Basic tags (if/for)
 - [ ] Variable declarations (var/const)
-- [ ] Multiple strategies for template inheritance (block+extends, include)
-- [ ] Custom delimiters.
+- [ ] Multiple strategies for template inheritance
+  - [ ] Partial includes
+  - [ ] Extend parent
+- [x] Custom delimiters
 - [ ] User-defined filters for transforming content.
     - [ ] A standard library for common functionality, like escaping HTML.
 
 ## Phase 1
 
-Develop a lexer that can yield a stream of tokens.
+Develop a lexer that can produce a stream of tokens.
 
 - [ ] Lexer
   - [x] Find a way to quickly scan text for patterns
 
-Pattern scanning was extracted to a separate library, [Scout](https://github.com/jmkng/scout).
+>Scanning was extracted to a separate library, [Scout](https://github.com/jmkng/scout).
 
 ## Phase 2
 
-Develop a parser than can build an AST from the tokens yielded by a lexer.
+Develop a parser than can build an AST from the tokens produced by a lexer.
 
 - [ ] Parser
 
