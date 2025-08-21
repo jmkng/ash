@@ -137,8 +137,8 @@ pub const Builder = struct {
     /// If you do use this method for any reason, you must deinitialize
     /// the `Syntax` using `deinit`.
     pub fn syntax(self: *Builder, allocator: std.mem.Allocator) !Syntax {
-        var patterns = std.ArrayList(Pattern).init(allocator);
-        var dynamic = std.ArrayList([]u8).init(allocator);
+        var patterns = std.ArrayList(Pattern).empty;
+        var dynamic = std.ArrayList([]u8).empty;
 
         if (self.expression_markers) |exp| {
             if (self.whitespace_marker) |ws| { // _dynamic
@@ -146,15 +146,15 @@ pub const Builder = struct {
                 const e_exp_c = try std.fmt.allocPrint(allocator, "{s}{s}", .{ ws, exp[1] });
                 const b_exp_p = Pattern{ .id = @intFromEnum(Marker.expression_begin_trim), .value = b_exp_c };
                 const e_exp_p = Pattern{ .id = @intFromEnum(Marker.expression_end_trim), .value = e_exp_c };
-                try dynamic.append(b_exp_c);
-                try dynamic.append(e_exp_c);
-                try patterns.append(b_exp_p);
-                try patterns.append(e_exp_p);
+                try dynamic.append(allocator, b_exp_c);
+                try dynamic.append(allocator, e_exp_c);
+                try patterns.append(allocator, b_exp_p);
+                try patterns.append(allocator, e_exp_p);
             }
             const b_exp = Pattern{ .id = @intFromEnum(Marker.expression_begin), .value = exp[0] };
             const e_exp = Pattern{ .id = @intFromEnum(Marker.expression_end), .value = exp[1] };
-            try patterns.append(b_exp);
-            try patterns.append(e_exp);
+            try patterns.append(allocator, b_exp);
+            try patterns.append(allocator, e_exp);
         }
         if (self.tag_markers) |blk| {
             if (self.whitespace_marker) |ws| { // _dynamic
@@ -162,19 +162,19 @@ pub const Builder = struct {
                 const e_tag_c = try std.fmt.allocPrint(allocator, "{s}{s}", .{ ws, blk[1] });
                 const b_tag_p = Pattern{ .id = @intFromEnum(Marker.tag_begin_trim), .value = b_tag_c };
                 const e_tag_p = Pattern{ .id = @intFromEnum(Marker.tag_end_trim), .value = e_tag_c };
-                try dynamic.append(b_tag_c);
-                try dynamic.append(e_tag_c);
-                try patterns.append(b_tag_p);
-                try patterns.append(e_tag_p);
+                try dynamic.append(allocator, b_tag_c);
+                try dynamic.append(allocator, e_tag_c);
+                try patterns.append(allocator, b_tag_p);
+                try patterns.append(allocator, e_tag_p);
             }
             const b_tag = Pattern{ .id = @intFromEnum(Marker.tag_begin), .value = blk[0] };
             const e_tag = Pattern{ .id = @intFromEnum(Marker.tag_end), .value = blk[1] };
-            try patterns.append(b_tag);
-            try patterns.append(e_tag);
+            try patterns.append(allocator, b_tag);
+            try patterns.append(allocator, e_tag);
         }
 
-        const p = try patterns.toOwnedSlice();
-        const d = try dynamic.toOwnedSlice();
+        const p = try patterns.toOwnedSlice(allocator);
+        const d = try dynamic.toOwnedSlice(allocator);
         return .{ .allocator = allocator, .patterns = p, ._dynamic = d };
     }
 };

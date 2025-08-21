@@ -1,13 +1,14 @@
 .{
-    .name = "ash",
-    .version = "0.1.0",
-    .minimum_zig_version = "0.12.0",
+    .name = .ash,
+    .fingerprint = 0xf12fbb5aead037e7,
+    .version = "0.1.1",
     .dependencies = .{
         .scout = .{
-            .url = "git+https://github.com/jmkng/scout#b48a7bf32b870cc96fdab1d5939feea649fa3d94",
-            .hash = "1220e0186b1d91eff978766f01f5cde15bf76529e2f9318f1a29ebbc71e32eb8584f",
+            .url = "git+https://github.com/jmkng/scout#8dea3c0612279c5e825f17a714d2518c291adb3c",
+            .hash = "scout-0.1.1-C5EnLQxXAABwF-4nuSxWA7cJJh_nnjovRci-onumFqCF",
         },
     },
+    .minimum_zig_version = "0.15.1",
     .paths = .{
         "build.zig",
         "build.zig.zon",
