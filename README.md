@@ -22,7 +22,7 @@ That being said, I don't really care to compile down to Zig functions or anythin
 
 ## Features
 
-- [ ] Basic tags (if/for)
+- [ ] Basic statements (if/for)
 - [ ] Variable declarations (var/const)
 - [ ] Multiple strategies for template inheritance
   - [ ] Partial includes

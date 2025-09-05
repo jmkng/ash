@@ -4,8 +4,12 @@
     .version = "0.1.1",
     .dependencies = .{
         .scout = .{
-            .url = "git+https://github.com/jmkng/scout#8dea3c0612279c5e825f17a714d2518c291adb3c",
+            .url = "git+https://github.com/jmkng/scout#fe5ea037142aeca11a7faea339a568e34d1297a7",
             .hash = "scout-0.1.1-C5EnLQxXAABwF-4nuSxWA7cJJh_nnjovRci-onumFqCF",
+        },
+        .ziglyph = .{
+            .url = "https://codeberg.org/pluiedev/ziglyph/archive/zig-0.15.tar.gz",
+            .hash = "ziglyph-0.12.0-PJbp-XX8HwD7VRYrqJl7ktlYvcI5HShflUWl2nT_9MeV",
         },
     },
     .minimum_zig_version = "0.15.1",
